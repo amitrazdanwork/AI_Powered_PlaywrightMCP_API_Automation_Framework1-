@@ -1,0 +1,56 @@
+Schema validation errors: [
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "id"
+    },
+    "message": "must have required property 'id'"
+  },
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "category"
+    },
+    "message": "must have required property 'category'"
+  },
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "name"
+    },
+    "message": "must have required property 'name'"
+  },
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "photoUrls"
+    },
+    "message": "must have required property 'photoUrls'"
+  },
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "tags"
+    },
+    "message": "must have required property 'tags'"
+  },
+  {
+    "instancePath": "",
+    "schemaPath": "#/required",
+    "keyword": "required",
+    "params": {
+      "missingProperty": "status"
+    },
+    "message": "must have required property 'status'"
+  }
+]

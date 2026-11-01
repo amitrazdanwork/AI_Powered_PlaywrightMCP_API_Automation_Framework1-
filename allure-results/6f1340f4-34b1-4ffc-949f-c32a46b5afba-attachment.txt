@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 23830,
+  "category": {
+    "id": 20,
+    "name": "CAT1"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 69,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}
+Response Body: {
+  "id": 23830,
+  "category": {
+    "id": 20,
+    "name": "CAT1"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 69,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}

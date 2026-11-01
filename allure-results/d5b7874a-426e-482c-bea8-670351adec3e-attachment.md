@@ -1,0 +1,176 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\pet-store-pet.spec.ts >> PET_MODULE - Pet API Tests >> TS003_TC008 - Validate GET pet by ID returns details of newly updated pet @master @sanity @api
+- Location: tests\api\pet-store-pet.spec.ts:707:9
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 49472
+Received: 102
+```
+
+# Test source
+
+```ts
+  641 |     test('TS003_TC005 - Validate PUT update pet response type is JSON @master @sanity @api', async ({ request }) => {
+  642 |         const petPayload = RandomDataUtil.generatePetPayload();
+  643 |        // petPayload.id = parseInt(PET_ID);
+  644 | 
+  645 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  646 |             headers: {
+  647 |                 'accept': 'application/json',
+  648 |                 'Content-Type': 'application/json'
+  649 |             },
+  650 |             data: petPayload
+  651 |         });
+  652 | 
+  653 |         expect(response.status()).toBe(200);
+  654 |         const responseHeaders = response.headers();
+  655 |         expect(responseHeaders['content-type']).toContain('application/json');
+  656 |         console.log('Response Status:', response.status());
+  657 |         console.log('Response Headers:', response.headers());
+  658 |     });
+  659 | 
+  660 |     test('TS003_TC006 - Validate PUT update pet response body matches JSON schema @master @regression @api', async ({ request }) => {
+  661 |         const petPayload = RandomDataUtil.generatePetPayload();
+  662 |       //  petPayload.id = parseInt(PET_ID);
+  663 | 
+  664 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  665 |             headers: {
+  666 |                 'accept': 'application/json',
+  667 |                 'Content-Type': 'application/json'
+  668 |             },
+  669 |             data: petPayload
+  670 |         });
+  671 | 
+  672 |         expect(response.status()).toBe(200);
+  673 |         const responseBody = await response.json();
+  674 | 
+  675 |         const schemaPath = path.resolve(__dirname, '../../api/schemas/PET/PUT.json');
+  676 |         const isValid = await validateSchema(responseBody, schemaPath);
+  677 |         expect(isValid).toBeTruthy();
+  678 |     });
+  679 | 
+  680 |     test('TS003_TC007 - Validate PUT update pet response body contains details as provided in request @master @sanity @api', async ({ request }) => {
+  681 |         const petPayload:any = RandomDataUtil.generatePetPayload();
+  682 |       //  petPayload.id = parseInt(PET_ID);
+  683 | 
+  684 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  685 |             headers: {
+  686 |                 'accept': 'application/json',
+  687 |                 'Content-Type': 'application/json'
+  688 |             },
+  689 |             data: petPayload
+  690 |         });
+  691 | 
+  692 |         expect(response.status()).toBe(200);
+  693 |         const responseBody = await response.json();
+  694 |         console.log('Request Payload:', JSON.stringify(petPayload, null, 2));
+  695 |         console.log('Response Body:', JSON.stringify(responseBody, null, 2));
+  696 |         
+  697 |         expect(responseBody.id).toBe(petPayload.id);
+  698 |         expect(responseBody.name).toBe(petPayload.name);
+  699 |         expect(responseBody.category.id).toBe(petPayload.category.id);
+  700 |         expect(responseBody.category.name).toBe(petPayload.category.name);
+  701 |         expect(responseBody.photoUrls).toEqual(petPayload.photoUrls);
+  702 |         expect(responseBody.tags[0].id).toBe(petPayload.tags[0].id);
+  703 |         expect(responseBody.tags[0].name).toBe(petPayload.tags[0].name);
+  704 |         expect(responseBody.status).toBe(petPayload.status);
+  705 |     });
+  706 | 
+  707 |     test('TS003_TC008 - Validate GET pet by ID returns details of newly updated pet @master @sanity @api', async ({ request }) => {
+  708 |         const petPayload: any = RandomDataUtil.generatePetPayload();
+  709 |      //   petPayload.id = parseInt(PET_ID);
+  710 | 
+  711 |         // Step 1: Update a pet via PUT
+  712 |         await test.step('1) Update pet via PUT', async () => {
+  713 |             const updateResponse = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  714 |                 headers: {
+  715 |                     'accept': 'application/json',
+  716 |                     'Content-Type': 'application/json'
+  717 |                 },
+  718 |                 data: petPayload
+  719 |             });
+  720 | 
+  721 |             expect(updateResponse.status()).toBe(200);
+  722 | 
+  723 |                console.log("UPDATED RESPONSE => "+updateResponse);
+  724 |         });
+  725 | 
+  726 |      
+  727 | 
+  728 |         // Step 2: GET the updated pet by its ID
+  729 |         await test.step('2) GET pet by updated ID', async () => {
+  730 |             const response = await request.get(`${BASE_URL}${Routes.getPetByPetId(PET_ID)}`, {
+  731 |                 headers: {
+  732 |                     'accept': 'application/json'
+  733 |                 }
+  734 |             });
+  735 | 
+  736 |             console.log('Response Status:', response.status());
+  737 |             console.log('Response Body:', JSON.stringify(await response.json(), null, 2));
+  738 | 
+  739 |             expect(response.status()).toBe(200);
+  740 |             const responseBody = await response.json();
+> 741 |             expect(responseBody.id).toBe(petPayload.id);
+      |                                     ^ Error: expect(received).toBe(expected) // Object.is equality
+  742 |             expect(responseBody.name).toBe(petPayload.name);
+  743 |         });
+  744 |     });
+  745 | 
+  746 |     test('TS003_TC009 - Validate PUT update pet response headers match spec @master @regression @api', async ({ request }) => {
+  747 |         const petPayload:any = RandomDataUtil.generatePetPayload();
+  748 |       //  petPayload.id = parseInt(PET_ID);
+  749 | 
+  750 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  751 |             headers: {
+  752 |                 'accept': 'application/json',
+  753 |                 'Content-Type': 'application/json'
+  754 |             },
+  755 |             data: petPayload
+  756 |         });
+  757 | 
+  758 |         expect(response.status()).toBe(200);
+  759 |         const responseHeaders = response.headers();
+  760 | 
+  761 |         expect(responseHeaders['content-type']).toContain('application/json');
+  762 |         expect(responseHeaders['access-control-allow-origin']).toBeDefined();
+  763 |         expect(responseHeaders['access-control-allow-methods']).toBeDefined();
+  764 |         expect(responseHeaders['access-control-allow-headers']).toBeDefined();
+  765 |         expect(responseHeaders['server']).toBeDefined();
+  766 |     });
+  767 | 
+  768 |     test('TS003_TC010 - Validate detailed response headers @master @regression @api', async ({ request }) => {
+  769 |         const petPayload:any = RandomDataUtil.generatePetPayload();
+  770 |        // petPayload.id = parseInt(PET_ID);
+  771 | 
+  772 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  773 |             headers: {
+  774 |                 'accept': 'application/json',
+  775 |                 'Content-Type': 'application/json'
+  776 |             },
+  777 |             data: petPayload
+  778 |         });
+  779 | 
+  780 |         expect(response.status()).toBe(200);
+  781 |         const responseHeaders = response.headers();
+  782 | 
+  783 |         // Required headers per spec
+  784 |         expect(responseHeaders['content-type']).toContain('application/json');
+  785 |         expect(responseHeaders['server']).toBeDefined();
+  786 |         expect(responseHeaders['date']).toBeDefined();
+  787 |         expect(responseHeaders['access-control-allow-origin']).toBeDefined();
+  788 |         expect(responseHeaders['access-control-allow-methods']).toBeDefined();
+  789 |         expect(responseHeaders['access-control-allow-headers']).toBeDefined();
+  790 |     });
+  791 | });
+```

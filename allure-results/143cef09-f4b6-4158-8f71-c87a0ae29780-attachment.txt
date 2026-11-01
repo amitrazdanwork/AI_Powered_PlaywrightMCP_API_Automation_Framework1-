@@ -1,0 +1,29 @@
+Response Status: 200
+Response Headers: {
+  date: 'Wed, 21 Oct 2026 16:39:14 GMT',
+  'content-type': 'application/json',
+  'transfer-encoding': 'chunked',
+  connection: 'keep-alive',
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, DELETE, PUT',
+  'access-control-allow-headers': 'Content-Type, api_key, Authorization',
+  server: 'Jetty(9.2.9.v20150224)'
+}
+Response Body: {
+  "id": 10,
+  "category": {
+    "id": 10,
+    "name": "string"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 10,
+      "name": "string"
+    }
+  ],
+  "status": "string"
+}

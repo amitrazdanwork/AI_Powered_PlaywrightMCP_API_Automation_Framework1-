@@ -1,0 +1,12 @@
+Response Status: 404
+Response Headers: {
+  date: 'Sun, 01 Nov 2026 05:10:41 GMT',
+  'content-type': 'application/json',
+  'transfer-encoding': 'chunked',
+  connection: 'keep-alive',
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, DELETE, PUT',
+  'access-control-allow-headers': 'Content-Type, api_key, Authorization',
+  server: 'Jetty(9.4.58.v20250814)'
+}
+Response Body: {"code":404,"type":"unknown","message":"Order Not Found"}

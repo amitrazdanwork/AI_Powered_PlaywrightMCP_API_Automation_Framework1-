@@ -1,0 +1,12 @@
+Response Status: 200
+Response Headers: {
+  date: 'Wed, 28 Oct 2026 04:16:26 GMT',
+  'content-type': 'application/json',
+  'transfer-encoding': 'chunked',
+  connection: 'keep-alive',
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, DELETE, PUT',
+  'access-control-allow-headers': 'Content-Type, api_key, Authorization',
+  server: 'Jetty(9.2.9.v20150224)'
+}
+Response Body: {"id":10,"petId":67,"quantity":7,"shipDate":"2026-10-28T04:16:33.832+0000","status":"approved","complete":false}

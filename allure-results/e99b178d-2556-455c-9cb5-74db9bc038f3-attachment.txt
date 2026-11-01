@@ -1,0 +1,19 @@
+Response Status: 200
+Response Body: {
+  "id": 102,
+  "category": {
+    "id": 89,
+    "name": "BIRD1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 24,
+      "name": "TAG2"
+    }
+  ],
+  "status": "pending"
+}

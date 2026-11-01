@@ -1,0 +1,223 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\pet-store-pet.spec.ts >> PET_MODULE - Pet API Tests >> TS004_TC003 - Validate DELETE pet returns empty response body and non-empty headers @master @regression @api
+- Location: tests\api\pet-store-pet.spec.ts:846:9
+
+# Error details
+
+```
+SyntaxError: Unexpected end of JSON input
+```
+
+# Test source
+
+```ts
+  764 | 
+  765 |     test('TS003_TC010 - Validate detailed response headers @master @regression @api', async ({ request }) => {
+  766 |         const petPayload: any = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  767 | 
+  768 |         const response = await request.put(`${BASE_URL}${Routes.updatePetById(PET_ID)}`, {
+  769 |             headers: {
+  770 |                 'accept': 'application/json',
+  771 |                 'Content-Type': 'application/json'
+  772 |             },
+  773 |             data: petPayload
+  774 |         });
+  775 | 
+  776 |         expect(response.status()).toBe(200);
+  777 |         const responseHeaders = response.headers();
+  778 | 
+  779 |         // Required headers per spec
+  780 |         expect(responseHeaders['content-type']).toContain('application/json');
+  781 |         expect(responseHeaders['server']).toBeDefined();
+  782 |         expect(responseHeaders['date']).toBeDefined();
+  783 |         expect(responseHeaders['access-control-allow-origin']).toBeDefined();
+  784 |         expect(responseHeaders['access-control-allow-methods']).toBeDefined();
+  785 |         expect(responseHeaders['access-control-allow-headers']).toBeDefined();
+  786 |     });
+  787 | 
+  788 |     // ---------------------------------------------------------
+  789 |     // DELETE - Delete Pet Tests (TS004)
+  790 |     // ---------------------------------------------------------
+  791 | 
+  792 |     test('TS004_TC001 - Validate DELETE pet returns status code within 2XX @master @sanity @api', async ({ request }) => {
+  793 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  794 | 
+  795 |         // First create a pet to delete
+  796 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  797 |             headers: {
+  798 |                 'accept': 'application/json',
+  799 |                 'Content-Type': 'application/json'
+  800 |             },
+  801 |             data: petPayload
+  802 |         });
+  803 | 
+  804 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  805 |             headers: {
+  806 |                 'accept': 'application/json'
+  807 |             }
+  808 |         });
+  809 | 
+  810 |         console.log('Response Status:', response.status());
+  811 |         const responseText = await response.text();
+  812 |         if (responseText) {
+  813 |             console.log('Response Body:', JSON.stringify(JSON.parse(responseText), null, 2));
+  814 |         }
+  815 | 
+  816 |         expect(response.status()).toBeLessThan(300);
+  817 |     });
+  818 | 
+  819 |     test('TS004_TC002 - Validate DELETE pet returns 200 OK @master @sanity @api', async ({ request }) => {
+  820 |         // NOTE: Petstore /v2/pet returns 200 (not 204) per API doc
+  821 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  822 | 
+  823 |         // First create a pet to delete
+  824 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  825 |             headers: {
+  826 |                 'accept': 'application/json',
+  827 |                 'Content-Type': 'application/json'
+  828 |             },
+  829 |             data: petPayload
+  830 |         });
+  831 | 
+  832 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  833 |             headers: {
+  834 |                 'accept': 'application/json'
+  835 |             }
+  836 |         });
+  837 | 
+  838 |         console.log('Response Status:', response.status());
+  839 |         const responseBody = await response.json();
+  840 |         console.log('Response Body:', JSON.stringify(responseBody, null, 2));
+  841 | 
+  842 |         expect(response.status()).toBe(200);
+  843 |         expect(response.statusText()).toBe('OK');
+  844 |     });
+  845 | 
+  846 |     test('TS004_TC003 - Validate DELETE pet returns empty response body and non-empty headers @master @regression @api', async ({ request }) => {
+  847 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  848 | 
+  849 |         // First create a pet to delete
+  850 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  851 |             headers: {
+  852 |                 'accept': 'application/json',
+  853 |                 'Content-Type': 'application/json'
+  854 |             },
+  855 |             data: petPayload
+  856 |         });
+  857 | 
+  858 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  859 |             headers: {
+  860 |                 'accept': 'application/json'
+  861 |             }
+  862 |         });
+  863 | 
+> 864 |         const responseBody = await response.json();
+      |                              ^ SyntaxError: Unexpected end of JSON input
+  865 | 
+  866 |         // For delete, response may have a message body (code, type, message)
+  867 |         expect(responseBody).not.toBeNull();
+  868 |         expect(response.headers()).not.toBeNull();
+  869 |     });
+  870 | 
+  871 |     test('TS004_TC004 - Validate GET pet by ID returns 404 after DELETE @master @sanity @api', async ({ request }) => {
+  872 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  873 | 
+  874 |         // First create a pet
+  875 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  876 |             headers: {
+  877 |                 'accept': 'application/json',
+  878 |                 'Content-Type': 'application/json'
+  879 |             },
+  880 |             data: petPayload
+  881 |         });
+  882 | 
+  883 |         // Delete the pet
+  884 |         const deleteResponse = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  885 |             headers: {
+  886 |                 'accept': 'application/json'
+  887 |             }
+  888 |         });
+  889 |         expect(deleteResponse.status()).toBe(200);
+  890 | 
+  891 |         // Now try to GET the deleted pet - the mock API may still return the pet
+  892 |         // but we validate the DELETE response structure
+  893 |         const response = await request.get(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  894 |             headers: {
+  895 |                 'accept': 'application/json'
+  896 |             }
+  897 |         });
+  898 | 
+  899 |         // Note: Petstore mock API doesn't actually persist deletes, so it may return 200
+  900 |         // This test validates the DELETE endpoint behavior
+  901 |         expect([200, 404]).toContain(response.status());
+  902 |     });
+  903 | 
+  904 |     test('TS004_TC005 - Validate DELETE pet response headers match spec @master @regression @api', async ({ request }) => {
+  905 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  906 | 
+  907 |         // First create a pet to delete
+  908 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  909 |             headers: {
+  910 |                 'accept': 'application/json',
+  911 |                 'Content-Type': 'application/json'
+  912 |             },
+  913 |             data: petPayload
+  914 |         });
+  915 | 
+  916 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  917 |             headers: {
+  918 |                 'accept': 'application/json'
+  919 |             }
+  920 |         });
+  921 | 
+  922 |         expect(response.status()).toBe(200);
+  923 |         const responseHeaders = response.headers();
+  924 | 
+  925 |         expect(responseHeaders['content-type']).toContain('application/json');
+  926 |         expect(responseHeaders['access-control-allow-origin']).toBeDefined();
+  927 |         expect(responseHeaders['access-control-allow-methods']).toBeDefined();
+  928 |         expect(responseHeaders['access-control-allow-headers']).toBeDefined();
+  929 |         expect(responseHeaders['server']).toBeDefined();
+  930 |     });
+  931 | 
+  932 |     test('TS004_TC006 - Validate DELETE non-existent pet returns 404 @master @regression @api', async ({ request }) => {
+  933 |         const nonExistentId = '999999999';
+  934 | 
+  935 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(nonExistentId)}`, {
+  936 |             headers: {
+  937 |                 'accept': 'application/json'
+  938 |             }
+  939 |         });
+  940 | 
+  941 |         expect(response.status()).toBe(404);
+  942 |     });
+  943 | 
+  944 |     test('TS004_TC007 - Validate DELETE pet response body matches JSON schema @master @regression @api', async ({ request }) => {
+  945 |         const petPayload = RandomDataUtil.generateNewPetPayload(parseInt(PET_ID));
+  946 | 
+  947 |         // First create a pet to delete
+  948 |         await request.post(`${BASE_URL}${Routes.addPetToStore()}`, {
+  949 |             headers: {
+  950 |                 'accept': 'application/json',
+  951 |                 'Content-Type': 'application/json'
+  952 |             },
+  953 |             data: petPayload
+  954 |         });
+  955 | 
+  956 |         const response = await request.delete(`${BASE_URL}${Routes.getPetByPetId(petPayload.id)}`, {
+  957 |             headers: {
+  958 |                 'accept': 'application/json'
+  959 |             }
+  960 |         });
+  961 | 
+  962 |         expect(response.status()).toBe(200);
+  963 |         const responseBody = await response.json();
+  964 | 
+```

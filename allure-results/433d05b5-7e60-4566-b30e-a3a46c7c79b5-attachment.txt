@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 81328,
+  "category": {
+    "id": 68,
+    "name": "CAT1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 56,
+      "name": "TAG2"
+    }
+  ],
+  "status": "sold"
+}
+Response Body: {
+  "id": 81328,
+  "category": {
+    "id": 68,
+    "name": "CAT1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 56,
+      "name": "TAG2"
+    }
+  ],
+  "status": "sold"
+}

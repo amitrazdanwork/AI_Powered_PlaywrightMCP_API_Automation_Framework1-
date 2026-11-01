@@ -1,0 +1,19 @@
+Response Status: 200
+Response Body: {
+  "id": 25169,
+  "category": {
+    "id": 38,
+    "name": "FISH1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 36,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}

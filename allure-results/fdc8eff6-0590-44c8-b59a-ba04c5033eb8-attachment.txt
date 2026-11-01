@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 65847,
+  "category": {
+    "id": 61,
+    "name": "BIRD1"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 32,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}
+Response Body: {
+  "id": 65847,
+  "category": {
+    "id": 61,
+    "name": "BIRD1"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 32,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}

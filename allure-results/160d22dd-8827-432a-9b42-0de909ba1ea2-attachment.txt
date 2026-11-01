@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 99418,
+  "category": {
+    "id": 70,
+    "name": "CAT2"
+  },
+  "name": "birdie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 14,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "pending"
+}
+Response Body: {
+  "id": 99418,
+  "category": {
+    "id": 70,
+    "name": "CAT2"
+  },
+  "name": "birdie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 14,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "pending"
+}

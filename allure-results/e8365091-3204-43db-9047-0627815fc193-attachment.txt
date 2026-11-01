@@ -1,0 +1,19 @@
+Response Status: 200
+Response Body: {
+  "id": 42245,
+  "category": {
+    "id": 81,
+    "name": "CAT2"
+  },
+  "name": "fluffy",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 94,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "pending"
+}

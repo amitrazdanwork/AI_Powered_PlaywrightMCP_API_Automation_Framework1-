@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 102,
+  "category": {
+    "id": 79,
+    "name": "DOG1"
+  },
+  "name": "fluffy",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 50,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "sold"
+}
+Response Body: {
+  "id": 102,
+  "category": {
+    "id": 79,
+    "name": "DOG1"
+  },
+  "name": "fluffy",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 50,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "sold"
+}

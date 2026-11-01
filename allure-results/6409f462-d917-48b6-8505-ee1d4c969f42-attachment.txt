@@ -1,0 +1,20 @@
+UPDATED RESPONSE => [object Object]
+Response Status: 200
+Response Body: {
+  "id": 102,
+  "category": {
+    "id": 13,
+    "name": "BIRD1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 91,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "available"
+}
