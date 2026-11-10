@@ -1,0 +1,19 @@
+Response Status: 200
+Response Body: {
+  "id": 44807,
+  "category": {
+    "id": 19,
+    "name": "CAT2"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 46,
+      "name": "TAG2"
+    }
+  ],
+  "status": "sold"
+}

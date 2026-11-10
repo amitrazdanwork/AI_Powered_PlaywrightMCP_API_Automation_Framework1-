@@ -1,0 +1,16 @@
+Request Payload: {
+  "id": 6,
+  "petId": 88,
+  "quantity": 6,
+  "shipDate": "2026-11-04T04:45:49.486Z",
+  "status": "placed",
+  "complete": true
+}
+Response Body: {
+  "id": 6,
+  "petId": 88,
+  "quantity": 6,
+  "shipDate": "2026-11-04T04:45:49.486+0000",
+  "status": "placed",
+  "complete": true
+}

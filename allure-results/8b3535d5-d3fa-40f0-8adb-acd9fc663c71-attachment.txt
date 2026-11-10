@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 16630,
+  "category": {
+    "id": 56,
+    "name": "FISH1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 63,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}
+Response Body: {
+  "id": 16630,
+  "category": {
+    "id": 56,
+    "name": "FISH1"
+  },
+  "name": "catie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 63,
+      "name": "TAG2"
+    }
+  ],
+  "status": "available"
+}

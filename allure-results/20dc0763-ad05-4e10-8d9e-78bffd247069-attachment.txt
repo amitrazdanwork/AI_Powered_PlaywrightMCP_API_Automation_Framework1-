@@ -1,0 +1,19 @@
+Response Status: 200
+Response Body: {
+  "id": 66490,
+  "category": {
+    "id": 77,
+    "name": "BIRD1"
+  },
+  "name": "bunnie",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 22,
+      "name": "TAG3"
+    }
+  ],
+  "status": "sold"
+}

@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 31594,
+  "category": {
+    "id": 68,
+    "name": "CAT2"
+  },
+  "name": "rex",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 9,
+      "name": "TAG1"
+    }
+  ],
+  "status": "sold"
+}
+Response Body: {
+  "id": 31594,
+  "category": {
+    "id": 68,
+    "name": "CAT2"
+  },
+  "name": "rex",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 9,
+      "name": "TAG1"
+    }
+  ],
+  "status": "sold"
+}

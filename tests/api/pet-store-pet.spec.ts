@@ -723,7 +723,7 @@ test.describe('PET_MODULE - Pet API Tests', () => {
     });
 
     test('TS004_TC003 - Validate DELETE pet returns empty response body and non-empty headers @master @regression @api', async ({ request }) => {
-        const petPayload = RandomDataUtil.generateNewPetPayload(Date.now());
+        const petPayload:any = RandomDataUtil.generateNewPetPayload(Date.now());
 
         // Pre-step: Create pet to delete
         await test.step('Create pet for deletion', async () => {
@@ -755,7 +755,7 @@ test.describe('PET_MODULE - Pet API Tests', () => {
     });
 
     test('TS004_TC004 - Validate GET pet by ID returns 404 after DELETE @master @sanity @api', async ({ request }) => {
-        const petPayload = RandomDataUtil.generateNewPetPayload(Date.now());
+        const petPayload:any = RandomDataUtil.generateNewPetPayload(Date.now());
 
         // Pre-step: Create pet
         await test.step('Create pet', async () => {
@@ -837,7 +837,7 @@ test.describe('PET_MODULE - Pet API Tests', () => {
     });
 
     test('TS004_TC007 - Validate DELETE pet response body matches JSON schema @master @regression @api', async ({ request }) => {
-        const petPayload = RandomDataUtil.generateNewPetPayload(Date.now());
+        const petPayload:any = RandomDataUtil.generateNewPetPayload(Date.now());
 
         // Pre-step: Create pet to delete
         await test.step('Create pet for deletion', async () => {

@@ -1,0 +1,16 @@
+Response Status: 404
+Response Headers: {
+  date: 'Wed, 04 Nov 2026 04:39:57 GMT',
+  'content-type': 'application/json',
+  'transfer-encoding': 'chunked',
+  connection: 'keep-alive',
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, DELETE, PUT',
+  'access-control-allow-headers': 'Content-Type, api_key, Authorization',
+  server: 'Jetty(9.2.9.v20150224)'
+}
+Response Body: {
+  "code": 1,
+  "type": "error",
+  "message": "Pet not found"
+}

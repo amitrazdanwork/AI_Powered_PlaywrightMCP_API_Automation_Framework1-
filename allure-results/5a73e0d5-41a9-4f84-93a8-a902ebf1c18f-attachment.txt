@@ -1,0 +1,36 @@
+Request Payload: {
+  "id": 102,
+  "category": {
+    "id": 89,
+    "name": "CAT1"
+  },
+  "name": "fluffy",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 20,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "pending"
+}
+Response Body: {
+  "id": 102,
+  "category": {
+    "id": 89,
+    "name": "CAT1"
+  },
+  "name": "fluffy",
+  "photoUrls": [
+    "URL1"
+  ],
+  "tags": [
+    {
+      "id": 20,
+      "name": "TAGO1"
+    }
+  ],
+  "status": "pending"
+}

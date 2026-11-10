@@ -1,0 +1,2 @@
+Response Status: 200
+Response Body: {"id":7,"petId":43,"quantity":6,"shipDate":"2026-11-07T08:47:48.737+0000","status":"approved","complete":false}
